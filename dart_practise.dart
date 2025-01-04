@@ -743,11 +743,92 @@ library;
 //* final class: A final class cannot be extended.
 //*base class: A base class is a class that is inherited by other classes.
 
-//!LIST
+//!LIST AND SETS
 void main() {
   // List list = [1, 2, 3];
   // print(list[2]); // OUTPUT: 3
 
-  List<int> list = [1, 2, 3];
-  print(list.indexed.map((e) => print("${e.$1}, ${e.$2}")));
+  // List<int> list = [1, 2, 3, "Hello"];  // Error: The element type 'String' can't be assigned to the list type 'int'.
+
+  // List list2 = [1, 2, 3, "String", ] ; // OUTPUT: [1, 2, 3, String]
+  //this does not show any error because we are not using any type of list. So, it can store any type of data.
+
+  //!Generics
+  // final student = Student('Sujata');
+
+  //!List
+  // List<Student> students = [
+  //   Student('Sujata',30),
+  //   Student('Raj', 50),
+  //   Student('Ram', 60),
+  //   Student('Rah', 90)
+  // ];
+  // print(students[0].name);
+
+  //Add
+  // students[2] = Student('Puja');
+  // students.add(Student('Sonal'));
+  // print('Number of students: ${students.length}');
+  // print(students[2].name);
+  // print(students);
+  // Add at specific index
+  // students.insert(0, Student('Rani'));
+  // print(students);
+
+  //Remove
+  // final removeFromList = Student('Rani');
+  // students.remove('Rani'); //This does not work because we are not passing the object of class. but if we store the Student('Rani') in a variable then it will work.
+  // students.remove(removeFromList);
+  // print("List after Removing element: $students"); //OUTPUT: [Student Sujata, Student Raj, Student Puja, Student Ram, Student Rah, Student Sonal]
+
+  //Filter
+  // final filteredList = students.where((student) => student.marks > 50);
+  // print("Filtered List: $filteredList");
+
+  //Reverse
+  // students = students.reversed.toList();
+  // print("Reversed List: $students"); // OUTPUT: [Student Rah, Student Ram, Student Raj, Student Sujata]
+
+// Note: Iterable can take any type of List but List can not take only Iterable.
+// students.addAll([Student('Rani', 40), Student('Pani', 40)]);
+// print("Iterable : $students");
+
+//There is a toSet() method that converts a List to a Set.
+// Set<Student> studentSet = students.toSet();
+// print("Set: $studentSet"); // it will remove duplicates from the list.
+
+//!Sets
+// sets remove duplicates from the list.
+  Set<Student> students = {
+    Student('Sujata', 30),
+    Student('Raj', 50),
+    Student('Ram', 60),
+    Student('Ram', 60),
+    Student('Ram', 60),
+    Student('Rah', 90)
+  };
+  // it will print Student('Ram', 60) only once because it removes duplicates.
+  
+  print(students); // Output: {Student Sujata with marks 30, Student Raj with marks 50, Student Ram with marks 60, Student Rah with marks 90}
+
+
+
+}
+
+//!Generics Using Class
+// class Student<T> {
+//   final T name;
+//   Student(this.name);
+// }
+
+//!List of Student Class
+class Student {
+  final String name;
+  final int marks;
+  const Student(this.name, this.marks);
+
+  @override
+  String toString() {
+    return "Student $name with marks $marks";
+  }
 }
