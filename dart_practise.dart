@@ -255,15 +255,22 @@ library;
 //!OR
 
 //* Declaring variable using final keyword and calling const constructor.
-// In Dart, final fields must be initialized either at the point of declaration or within the constructor. Even though field flavour is nullable.
-// final String flavour; OR
-//final String? flavour;
+// In Dart, final fields must be initialized either at the point of declaration or within the constructor. Even though field flavour is nullable. Otherwise we can not access it by creating object of class.
+// final String flavour;
+// OR
+// final String? flavour;
 // shows an Error: The final variable 'flavour' must be initialized.
 // but if we initialize it in the constructor or assign a value at the point of declaration then it will not show any error.
 //Example:
-//final String flavour = 'Vanilla';
-// const Cake(this.flavour); // It will not show any error because we are using const constructor.
-//If we use final fields, a constructor is necessary to initialize them, ensuring that they cannot be changed after the object is created.
+// final String flavour = 'Vanilla';
+// const Cake(this.flavour); // This will show an error because 'flavour' is already initialized at the point of declaration.
+
+// If final varible initialize within the class..then we can not call this within the constructor.
+//EXAMPLE:
+// final String flavour = 'Vanilla';
+// const Cake();
+
+//If we use final fields with uninitialized value, a constructor is necessary to initialize them, ensuring that they cannot be changed after the object is created.
 // final String flavour;
 // final int price;
 // const Cake({required this.flavour, required this.price});
@@ -359,102 +366,154 @@ library;
 //* multiple inheritance is not supported in Dart.
 //* But if one subclass is inheriting from two superclasses and both superclasses are inheriting from the same superclass then it is called as Hierarchical Inheritance.
 
-//
+// void main() { //!Start of main function.
+//Creating object of class Animal
+// Animal animal = Animal();
+// animal.eat();
+// print(animal.legs);
+// print(animal.eyes);
+// print(animal.isRoaring);
 
-void main() {
-  //Creating object of class Animal
-  Animal animal = Animal();
-  animal.eat();
-  print(animal.legs);
-  print(animal.eyes);
-  print(animal.isRoaring);
+//Creating object of class Lion
+// Lion lion = Lion();
+// lion.eat();
+// lion.roar();
+// lion.lionRun();
+// print(lion.legs);
+// print(lion.eyes);
+// print(lion.isRoaring);
 
-  //Creating object of class Lion
-  Lion lion = Lion();
-  lion.eat();
-  lion.roar();
-  lion.lionRun();
-  print(lion.legs);
-  print(lion.eyes);
-  print(lion.isRoaring);
+//Creating object of class Cow
+// Cow cow = Cow();
+// cow.eat();
+// cow.roar();
+// cow.cowRun();
+// cow.printAnimalProperties();
+// print(cow.legs);
+// print(cow.eyes);
+// print(cow.isRoaring);
+// } //!End of main function.
 
+// class Animal {
+//   int legs = 4;
+//   int eyes = 2;
 
-  //Creating object of class Cow
-  Cow cow = Cow();
+//   bool isVegetarian = false;
+//   bool isDomasticAnimal = false;
+
+//   bool isRoaring = false;
+//   void eat() {
+//     print("Animal is eating");
+//   }
+
+//   void run(String animalName) {
+//     print("$animalName is running");
+//   }
+// }
+
+// class Lion is inheriting the properties and methods of class Animal.
+// using extends keyword.
+// class Lion extends Animal {
+//   bool isRoaring = true;
+//   int legs = 5;
+
+//   @override
+//   void eat() {
+//     print("Lion is eating");
+//     print(
+//         "SuperClass Animal's eyes value is printing:  ${super.eyes}"); //super keyword is used to access the properties and methods of superclass.
+//   }
+
+//   void lionRun() {
+//     super.run("Lion");
+//   }
+
+//   void roar() {
+//     print("Lion is roaring");
+//   }
+// }
+
+// //*Hierarchical Inheritance: In this type of inheritance, one subclass is inheriting from two superclasses and both superclasses are inheriting from the same superclass. It is also known as multiple inheritance.
+// //* in this example, Cow is inheriting from Lion and Lion is inheriting from Animal So, Cow is indirectly inheriting from Animal.
+// class Cow extends Lion {
+//   printAnimalProperties() {
+//     print("Animal's isVegetarian: ${super.isVegetarian}");
+//     print("Animal's eyes: ${super.eyes}");
+//     print("Animal's isDomasticAnimal: ${super.isDomasticAnimal}");
+//   }
+
+//   void cowRun() {
+//     super.run("Cow");
+//   }
+
+//   @override
+//   void eat() {
+//     print("Cow is eating");
+//     print(
+//         "SuperClass Lion's eyes value is printing:  ${super.eyes}"); //super keyword is used to access the properties and methods of superclass.
+//   }
+
+//   @override
+//   void roar() {
+//     print("Cow can not roaring");
+//   }
+// }
+
+//! CLASSES PART 5 (Implement keyword)
+//*Implement keyword is used to implement the properties and methods of an interface in a class.
+//*Interface: An interface is a collection of abstract methods. It is a blueprint of a class. It is used
+//*to achieve abstraction and multiple inheritance in Dart.
+//* when we use implement we have to override the  all methods and variables of interface in the class.
+
+void main(){
+  Cow cow = Cow(); 
   cow.eat();
   cow.roar();
-  cow.cowRun();
-  cow.printAnimalProperties();
+  cow.run("Cow");
   print(cow.legs);
   print(cow.eyes);
-  print(cow.isRoaring);
-  
-
 }
-
 class Animal {
   int legs = 4;
-  int eyes = 2;
 
-  bool isVegetarian = false;
-  bool isDomasticAnimal = false;
-
-  bool isRoaring = false;
-  void eat() {
-    print("Animal is eating");
-  }
   void run(String animalName) {
     print("$animalName is running");
   }
 }
 
-// class Lion is inheriting the properties and methods of class Animal.
-// using extends keyword.
-class Lion extends Animal {
-  bool isRoaring = true;
-  int legs = 5;
-
+class Cow extends Animal implements Lion {
+  @override
+  int legs = 2;
 
   @override
-  void eat() {
-    print("Lion is eating");
-    print(
-        "SuperClass Animal's eyes value is printing:  ${super.eyes}"); //super keyword is used to access the properties and methods of superclass.
-  }
-
-
-void lionRun(){
-  super.run("Lion");
-}
-
-  void roar() {
-    print("Lion is roaring");
-  }
-}
-
-//*Hierarchical Inheritance: In this type of inheritance, one subclass is inheriting from two superclasses and both superclasses are inheriting from the same superclass. It is also known as multiple inheritance.
-//* in this example, Cow is inheriting from Lion and Lion is inheriting from Animal So, Cow is indirectly inheriting from Animal.
-class Cow extends Lion {
-
-printAnimalProperties(){
-  print("Animal's isVegetarian: ${super.isVegetarian}");
-  print("Animal's eyes: ${super.eyes}");
-  print("Animal's isDomasticAnimal: ${super.isDomasticAnimal}");
-}
-
-  void cowRun() {
-    super.run("Cow");
-}
+  int eyes = 1;
 
   @override
   void eat() {
     print("Cow is eating");
-    print(
-        "SuperClass Lion's eyes value is printing:  ${super.eyes}"); //super keyword is used to access the properties and methods of superclass.
   }
 
   @override
   void roar() {
-    print("Cow can not roaring");
+    print("Cow is roaring");
+  }
+
+  @override
+  void run(String animalName) {
+    print("$animalName is running");
+  }
+}
+
+class Lion extends Animal {
+  int legs = 5;
+  int eyes = 3;
+
+  void eat() {
+    print("Lion is eating");
+    print(
+        "SuperClass Animal's eyes value is printing:  ${eyes}"); //super keyword is used to access the properties and methods of superclass.
+  }
+  void roar() {
+    print("Lion is roaring");
   }
 }
