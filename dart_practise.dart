@@ -465,55 +465,289 @@ library;
 //*to achieve abstraction and multiple inheritance in Dart.
 //* when we use implement we have to override the  all methods and variables of interface in the class.
 
-void main(){
-  Cow cow = Cow(); 
-  cow.eat();
-  cow.roar();
-  cow.run("Cow");
-  print(cow.legs);
-  print(cow.eyes);
-}
-class Animal {
-  int legs = 4;
+// void main(){
+//   Cow cow = Cow();
+//   cow.eat();
+//   cow.roar();
+//   cow.run("Cow");
+//   print(cow.legs);
+//   print(cow.eyes);
+// }
+// class Animal {
+//   int legs = 4;
 
-  void run(String animalName) {
-    print("$animalName is running");
-  }
-}
+//   void run(String animalName) {
+//     print("$animalName is running");
+//   }
+// }
 
-class Cow extends Animal implements Lion {
-  @override
-  int legs = 2;
+// class Cow extends Animal implements Lion {
+//   @override
+//   int legs = 2;
 
-  @override
-  int eyes = 1;
+//   @override
+//   int eyes = 1;
 
-  @override
-  void eat() {
-    print("Cow is eating");
-  }
+//   @override
+//   void eat() {
+//     print("Cow is eating");
+//   }
 
-  @override
-  void roar() {
-    print("Cow is roaring");
-  }
+//   @override
+//   void roar() {
+//     print("Cow is roaring");
+//   }
 
-  @override
-  void run(String animalName) {
-    print("$animalName is running");
-  }
-}
+//   @override
+//   void run(String animalName) {
+//     print("$animalName is running");
+//   }
+// }
 
-class Lion extends Animal {
-  int legs = 5;
-  int eyes = 3;
+// class Lion extends Animal {
+//   int legs = 5;
+//   int eyes = 3;
 
-  void eat() {
-    print("Lion is eating");
-    print(
-        "SuperClass Animal's eyes value is printing:  ${eyes}"); //super keyword is used to access the properties and methods of superclass.
-  }
-  void roar() {
-    print("Lion is roaring");
-  }
+//   void eat() {
+//     print("Lion is eating");
+//     print(
+//         "SuperClass Animal's eyes value is printing:  ${eyes}"); //super keyword is used to access the properties and methods of superclass.
+//   }
+//   void roar() {
+//     print("Lion is roaring");
+//   }
+// }
+
+//! CLASSES PART 6 (ABSTRACT CLASS)
+//*Abstract Class: An abstract class is a class that cannot
+//*be instantiated. It is used to define the structure of a class.
+//* we can use  extend or implement keyword to  abstract class in another class.
+
+// void main() {
+//   //? Cannot be Instantiated: You cannot create an instance of an abstract class.
+//  Animal animal = Animal(); // Error: The class 'Animal' is abstract and can't be instantiated.
+
+//   Cow cow = Cow();
+//   cow.eat();
+//   cow.run();
+//   cow.leg = 4;
+// }
+
+// abstract class Animal {
+//   int leg = 4;
+
+//  Abstract method without body {}
+// we have to provide the eat method in the subclass because it is an abstract method. whether we use extends or implement keyword to implement the abstract class.
+//   void eat();
+
+//Concrete method (With Implimentation of Method Body)
+//   void run() {
+//     print("Animal is running");
+//   }
+// }
+
+//Subclass Cow is implementing the abstract class Animal.
+
+// class Cow extends Animal {
+// Must provide a concrete implementation for the abstract method
+//   @override
+//   void eat() {
+//     print("Cow is eating");
+//   }
+
+//   @override
+//   void run() {
+//     print("Cow is running");
+//   }
+// }
+
+//!OOPS PART 1 (POLYMORPHISM)
+// void main() {   //!Start of main function.
+
+//*  1. POLYMORPHISM
+// Here, we are creating an object of class Cat and Dog and assigning it to the Animal class.
+// This is called polymorphism.
+//  Polymorphism is the ability of an object to take on many forms.
+
+//   Animal cat = Cat();
+//   cat.sound();
+//   cat = Dog();
+//   cat.sound();
+// } //!End of main function.
+
+//  1. POLYMORPHISM
+// Polymorphism is the ability of an object to take on many forms.
+
+// class Animal {
+//   void sound() {
+//     print("Animal naking sound");
+//   }
+// }
+
+// class Cat extends Animal {
+//   @override
+//   void sound() {
+//     print("Cat making sound");
+//   }
+// }
+
+// class Dog extends Animal {
+//   @override
+//   void sound() {
+//     print("Dog making sound");
+//   }
+// }
+
+//!OOPS PART 2 (ABSTRACTION)
+// void main() {
+//   //!Start of main function.
+
+//Abstract class Can not be instantiated.
+// Example: Animal animal = Animal(); // Error: The class 'Animal' is abstract and can't be instantiated.
+
+// 1. ABSTRACTION : Hiding the implementation details and showing only the necessary features of an object.
+// Animal cat = Cat();
+// cat.sound(); // OUTPUT = Cat making sound
+// cat = Dog(); // OUTPUT = Dog making sound
+// cat.sound();
+
+// Cat  cat = Cat();
+// cat.sound(); // OUTPUT = Cat making sound
+// Dog dog = Dog();
+// dog.sound(); // OUTPUT = Dog making sound
+// 2. ABSTRACTION :
+// Animal cat = Cat();
+// cat.sound(); // OUTPUT = Cat making sound
+// cat = Dog(); // OUTPUT = Dog making sound
+// cat.sound();
+
+// Cat  cat = Cat();
+// cat.sound(); // OUTPUT = Cat making sound
+// Dog dog = Dog();
+// dog.sound(); // OUTPUT = Dog making sound
+// } //!End of main function.
+
+// 2. ABSTRACTION (Hiding the implementation details and showing only the necessary features of an object.)
+//Abstract class Can not be instantiated.
+// abstract class Animal {
+//   int? leg;
+//   void sound();
+// }
+
+// class Cat extends Animal {
+//   @override
+//   void sound() {
+//     print("Cat making sound");
+//   }
+// }
+
+// class Dog extends Animal {
+//   @override
+//   void sound() {
+//     print("Dog making sound");
+//   }
+// }
+
+//! 3. INHERITANCE: done above in the section extends keyword
+
+//! 4. ENCAPSULATION
+// void main() {
+//   //!Start of main function.
+//   Animal animal = Animal();
+//   animal.legs = 4;
+//   animal.eyes = 2;
+//   print(animal.legs);
+//   print(animal.eyes);
+//   animal.eat();
+// } //!End of main function.
+
+// 4. ENCAPSULATION: Encapsulation is the process of wrapping the data (variables) and code acting on the data (methods) together as a single unit. It restricts direct access to some of the object's components.
+// _ is used to make the variable private.
+
+// class Animal {
+//   int? _legs;
+//   int? _eyes;
+
+//   int? get legs => _legs;
+//   set legs(int? value) => _legs = value;
+
+//   int? get eyes => _eyes;
+//   set eyes(int? value) => _eyes = value;
+
+//   void eat() {
+//     print("Animal is eating");
+//   }
+// }
+
+//! MIXINS
+//* MIXINS: Mixins are a way to reuse code in multiple classes. Mixins are similar to interfaces in Dart, but they can also have methods and variables.
+//* Mixins are used to add functionality to a class without inheriting from the class.
+
+// void main() {
+//!Start of main function.
+
+//   Lion lion = Lion();
+//    lion.jump();
+//   lion.eat();
+// } //!End of main function.
+
+// mixin Animal{
+//   void eat(){
+//     print("Animal is eating");
+//   }
+//  int leg = 4;
+// }
+
+// class Lion with Animal{
+//   void jump(){
+//     print("Lion have $leg legs.");
+//   }
+// }
+
+//!Class Modifiers
+//*sealed class: A sealed class is a class that can only be extended by classes declared in the same file.
+// Example: sealed class Animal.
+// Define a sealed class
+// sealed class Animal {
+//   void eat() {
+//     print("Animal is eating");
+//   }
+// }
+
+// Subclass within the same file
+// class Dog extends Animal {
+//   @override
+//   void eat() {
+//     print("Dog is eating");
+//   }
+// }
+
+// Another subclass within the same file
+// class Cat extends Animal {
+//   @override
+//   void eat() {
+//     print("Cat is eating");
+//   }
+// }
+
+// void main() {
+//   Animal animal = Dog();
+//   animal.eat(); // Output: Dog is eating
+//   Dog dog = Dog();
+//   dog.eat(); // Output: Dog is eating
+
+//   Cat cat = Cat();
+//   cat.eat(); // Output: Cat is eating
+// }
+
+//* final class: A final class cannot be extended.
+//*base class: A base class is a class that is inherited by other classes.
+
+//!LIST
+void main() {
+  // List list = [1, 2, 3];
+  // print(list[2]); // OUTPUT: 3
+
+  List<int> list = [1, 2, 3];
+  print(list.indexed.map((e) => print("${e.$1}, ${e.$2}")));
 }
