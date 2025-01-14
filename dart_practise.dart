@@ -24,7 +24,6 @@ library;
 // print(s);
 
 // Second way
-
 // String s = 'This is a \n multiline \n string';
 // print(s);
 
